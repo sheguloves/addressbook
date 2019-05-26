@@ -19,7 +19,8 @@ export default {
     "news": "News",
     "modified": "Modified",
     "updateSuccess": "Update successfully!",
-    "deleteSuccess": "Delete successfully!"
+    "deleteSuccess": "Delete successfully!",
+    "invalidCellPhone": "Invalid cell phone: {phoneNumber}, cell phone pattern: 000-000-000"
   },
   "zh": {
     "en": "英语",
@@ -41,6 +42,7 @@ export default {
     "news": "添加",
     "modified": "修改",
     "updateSuccess": "更新成功！",
-    "deleteSuccess": "删除成功！"
+    "deleteSuccess": "删除成功！",
+    "invalidCellPhone": "非法手机号码: {phoneNumber}, 输入格式为：000-000-000"
   }
 }

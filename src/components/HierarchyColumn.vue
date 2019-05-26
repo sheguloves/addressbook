@@ -7,7 +7,7 @@
     <template slot-scope="scope">
       <div @dblclick="onDBClick(scope.row, column)">
         <div v-if="isEditing(scope.row, column)">
-          <el-input v-focus v-model="scope.row[column.field]" @blur="onInputBlur(scope.row)"></el-input>
+          <pattern-input v-focus v-model="scope.row[column.field]" :pattern="column.pattern" @blur="onInputBlur(scope.row)" @invalid-input="onInvalidInput"></pattern-input>
         </div>
         <div v-else :title="getValue(scope.row, column)">
           {{ getValue(scope.row, column) }}
@@ -20,9 +20,13 @@
 <script>
 
   import _ from 'lodash'
+  import PatternInput from './PatternInput'
 
   export default {
     name: "HierarchyColumn",
+    components: {
+      'pattern-input': PatternInput,
+    },
     props: {
       column: Object,
       editingCell: {
@@ -62,6 +66,14 @@
       },
       onInputBlur(data) {
         this.$emit('cell-input-blur', data)
+      },
+      onInvalidInput(invalidValue) {
+        this.$message.error({
+          message: this.$t('invalidCellPhone', {
+            phoneNumber: invalidValue
+          }),
+          duration: 5000
+        })
       }
     }
   }

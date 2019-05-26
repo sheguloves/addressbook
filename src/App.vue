@@ -227,6 +227,13 @@
   color: #42b983;
 }
 
+#app .el-table .cell,
+#app .el-table .cell > div {
+  height: 100%;
+  width: 100%;
+  line-height: 36px;
+}
+
 #app .el-table--small {
   font-size: 13px;
 }
