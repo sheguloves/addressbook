@@ -216,7 +216,6 @@
    display: flex;
    justify-content: space-between;
    padding-top: 20px;
-
 }
 
 #app .modified {

@@ -1,7 +1,7 @@
 export default {
   "en": {
     "en": "English",
-    "zh": "Chinese",
+    "zh": "简体中文",
     "id": "ID",
     "name": "Name",
     "location": "Location",
@@ -23,7 +23,7 @@ export default {
     "invalidCellPhone": "Invalid cell phone: {phoneNumber}, cell phone pattern: 000-000-000"
   },
   "zh": {
-    "en": "英语",
+    "en": "English",
     "zh": "简体中文",
     "id": "ID",
     "name": "名称",
