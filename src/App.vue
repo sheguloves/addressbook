@@ -6,8 +6,9 @@
         <option v-for="item in langs" :key="item" :value="item">{{ $t(item) }}</option>
       </select>
     </div>
-    <section>
+    <section class="content">
       <my-table :data="addresses" :columns="columns" @selection-change="onSelectionChange" @data-change="onDataChange" :row-class="getRowClass"></my-table>
+      <v-legend :legend="legend"></v-legend>
     </section>
     <div class="footer">
       <div>
@@ -27,6 +28,7 @@
   import _ from 'lodash'
   import MyTable from './components/MyTable'
   import UpdateDialog from './components/UpdateDialog'
+  import Legend from './components/Legend'
   import columns from './Column'
 
   const mockData = [{
@@ -47,6 +49,14 @@
     cellPhone: '000-000-000'
   }
 
+  const legend = [{
+    color: '#e96900',
+    description: 'Modified'
+  }, {
+    color: '#42b983',
+    description: 'New'
+  }]
+
   const IDMAP = {
     10: 1
   }
@@ -64,6 +74,7 @@
     components: {
       'update-dialog': UpdateDialog,
       'my-table': MyTable,
+      'v-legend': Legend
     },
     data() {
       return {
@@ -73,7 +84,8 @@
         editingCell: null,
         modifiedAddressMap: {},
         showUpdateDialog: false,
-        langs: ['en', 'zh']
+        langs: ['en', 'zh'],
+        legend: legend
       }
     },
     computed: {
@@ -204,6 +216,12 @@
 
     .form-control {
       width: 150px;
+    }
+  }
+  .content {
+    .legend {
+      display: flex;
+      justify-content: flex-end;
     }
   }
   .footer {
