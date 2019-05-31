@@ -21,8 +21,7 @@
         let newValue = event.target.value
         if (newValue && patternRegExp && !patternRegExp.test(newValue)) {
           this.$emit('invalid-input', newValue)
-          newValue = ''
-          this.$emit('input', newValue)
+          return
         }
         this.$emit('change', newValue)
       },

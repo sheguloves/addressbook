@@ -2,12 +2,12 @@ import Vue from 'vue'
 import ElementUI from 'element-ui'
 import VueI18n from 'vue-i18n'
 import lang from './i18n/lang'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'element-ui/lib/theme-chalk/index.css'
 
 import App from './App.vue'
 
 Vue.config.productionTip = false
-
-import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.use(ElementUI, {
   size: 'small'

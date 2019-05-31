@@ -1,4 +1,7 @@
 export default [{
+  width: 40,
+  type: 'selection'
+}, {
   label: 'id',
   field: 'id',
   width: 70,
@@ -12,7 +15,7 @@ export default [{
   field: 'location'
 }, {
   label: 'office',
-  field: 'office'
+  field: 'office',
 }, {
   label: 'phone',
   field: '',
