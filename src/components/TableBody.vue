@@ -4,10 +4,9 @@
       <td v-for="column in dataColumns" :key="column.field + column.label" @dblclick="onDBClick(item, column)">
         <input v-if="column.type === 'selection'" type="checkbox" @change="onCheck(item, $event)" :checked="selection.indexOf(item) > -1"/>
         <div v-else-if="isEditing(item, column)" class="input-container">
-          <pattern-input :class="{'error': invalidValue}" ref="input" v-focus v-model="item[column.field]" :pattern="column.pattern" @change="onChange(item)" @invalid-input="onInvalidInput"></pattern-input>
+          <pattern-input :class="{'error': invalidValue}" ref="input" v-focus v-model="item[column.field]" :pattern="column.pattern" @change="onChange(item)" @invalid-input="onInvalidInput" @blur="onBlur" :placeholder="column.placeholder"></pattern-input>
         </div>
-        <div v-else class="cell">
-          {{ getValue(item, column) }}
+        <div v-else class="cell" v-html="getCellValue(item, column)">
         </div>
       </td>
     </tr>
@@ -35,7 +34,8 @@
           return []
         }
       },
-      rowClass: [String, Function]
+      rowClass: [String, Function],
+      cellValue: [String, Function]
     },
     data() {
       return {
@@ -78,6 +78,13 @@
           checked: event.target.checked
         })
       },
+      getCellValue(data, column) {
+        if (_.isString(this.cellValue)) {
+          return this.cellValue
+        } else if (_.isFunction(this.cellValue)) {
+          return this.cellValue(data, column)
+        }
+      },
       getValue(data, column) {
         return _.get(data, column.field)
       },
@@ -97,6 +104,9 @@
         this.invalidValue = false
         this.$emit('edit-complete', data)
       },
+      onBlur(event) {
+        this.$emit('edit-complete', event.target.value)
+      },
       onInvalidInput(invalidValue) {
         this.$message.error({
           message: this.$t('invalidCellPhone', {
@@ -114,10 +124,10 @@
   tbody.my-tbody {
     tr {
       &.modified {
-        color: #e96900;
+        background-color: #fbdbc1;
       }
       &.new {
-        color: #42b983;
+        background-color: #a4fbd3;
       }
 
       td {
@@ -135,6 +145,8 @@
         }
         .cell {
           word-break: break-all;
+          text-align: left;
+          padding: 0 15px;
         }
       }
     }

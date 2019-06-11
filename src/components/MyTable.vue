@@ -1,7 +1,7 @@
 <template>
   <table class="table table-bordered table-hover">
     <hierarchy-header :columns="columns" @head-check="onHeaderCheck" :all-selected="allSelected" @header-click="onHeaderClick" :order="order" :order-column="orderColumn" :sortable="isColumnSortable"></hierarchy-header>
-    <table-body :columns="columns" :data-source="tableData" @data-check="onDataCheck" :selection="selection" @edit-complete="onEditComplete" @cell-dbclick="onCellDBClick" :editing-cell="editingCell" :row-class="rowClass"></table-body>
+    <table-body :columns="columns" :data-source="tableData" @data-check="onDataCheck" :selection="selection" @edit-complete="onEditComplete" @cell-dbclick="onCellDBClick" :editing-cell="editingCell" :row-class="rowClass" :cell-value="cellValue"></table-body>
   </table>
 </template>
 
@@ -23,7 +23,8 @@
     props: {
       columns: Array,
       data: Array,
-      rowClass: [String, Function]
+      rowClass: [String, Function],
+      cellValue: [String, Function]
     },
     data() {
       return {

@@ -7,7 +7,7 @@
       </select>
     </div>
     <section class="content">
-      <my-table :data="addresses" :columns="columns" @selection-change="onSelectionChange" @data-change="onDataChange" :row-class="getRowClass"></my-table>
+      <my-table :data="addresses" :columns="columns" @selection-change="onSelectionChange" @data-change="onDataChange" :row-class="getRowClass" :cell-value="getCellValue"></my-table>
       <v-legend :legend="legend"></v-legend>
     </section>
     <div class="footer">
@@ -42,11 +42,11 @@
 
   const ADDRESS_TEMPLATE = {
     id: '',
-    name: 'xxx',
-    location: 'xxx',
-    office: 'xxx',
-    officePhone: 'x00000',
-    cellPhone: '000-000-000'
+    name: '',
+    location: '',
+    office: '',
+    officePhone: '',
+    cellPhone: ''
   }
 
   const legend = [{
@@ -192,6 +192,16 @@
           clazz = 'new'
         }
         return clazz
+      },
+      getCellValue(data, column) {
+        let value = _.get(data, column.field, '')
+        if (value) {
+          return value
+        } else if (data.id === '') {
+          return `<i style="color: #aaa;">${column.placeholder || ''}</i>`
+        } else {
+          return ''
+        }
       },
     }
   }
